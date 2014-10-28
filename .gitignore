@@ -4,6 +4,8 @@ bin
 lib
 include
 node_modules
+.Python
+.ropeproject
 
 # Logs
 logs
