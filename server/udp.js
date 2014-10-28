@@ -9,8 +9,8 @@ var HOST = '127.0.0.1';
 var server = dgram.createSocket("udp4");
 
 server.on("message", function(msg, remote) {
-    console.log('got message from client: ' + msg);
-    //console.log(remote.address + ':' + remote.port);
+    console.log('got message from client: ' + msg + '\r\n');
+    console.log(remote.address + ':' + remote.port);
 
     var okBuffer = new Buffer("OK " + msg);
     server.send(okBuffer, 0, okBuffer.length, remote.port, remote.address, 
@@ -22,6 +22,8 @@ server.on("message", function(msg, remote) {
             console.log("OK sent to client");
         }
     });
+
+    var jsonObject = JSON.parse(msg);
 });
 
 server.on('listening', function() {

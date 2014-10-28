@@ -6,7 +6,7 @@ var client = new elasticsearch.Client({
     host: 'localhost:9200'
 });
 
-app = expressa();
+app = express();
 
 var connectMongo = function() {
     mongoose.connect('mongodb://localhost/test', {keepAlive: 1});
@@ -15,7 +15,6 @@ var connectMongo = function() {
 
 mongoose.connection.on('disconnected', connectMongo);
 connectMongo();
-
 
 app.get('/api/', function(req, res) {
 

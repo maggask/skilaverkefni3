@@ -9,5 +9,4 @@ def fibo(n):
         return_list.append(b)
 
 if __name__ == '__main__':
-    while True:
-        fibo(10000)
+    fibo(10000)
