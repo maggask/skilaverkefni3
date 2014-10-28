@@ -1,0 +1,25 @@
+{
+  "name": "skilaverkefni3",
+  "version": "1.0.0",
+  "description": "Project 3 called Kodemon in Web Services class in the University of Reykjavik",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maggask/skilaverkefni3.git"
+  },
+  "author": "Margret S. Kristjansdottir, Anna Laufey Stefansdottir and Einar Thor Traustason",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maggask/skilaverkefni3/issues"
+  },
+  "homepage": "https://github.com/maggask/skilaverkefni3",
+  "dependencies": {
+    "elasticsearch": "^2.4.3",
+    "express": "^4.10.0",
+    "mongoose": "^3.8.18",
+    "nodemon": "^1.2.1"
+  }
+}
