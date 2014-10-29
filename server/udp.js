@@ -10,6 +10,14 @@ var HOST = '127.0.0.1';
 
 var server = dgram.createSocket("udp4");
 
+var connectMongo = function() {
+    mongoose.connect('mongodb://localhost/kodemondb', {keepAlive: 1});
+    console.log('Connecting to mongodb');
+};
+
+mongoose.connection.on('disconnected', connectMongo);
+connectMongo();
+
 server.on("message", function(msg, remote) {
     console.log('got message from client: ' + msg + '\r\n');
     console.log(remote.address + ':' + remote.port);
@@ -26,6 +34,15 @@ server.on("message", function(msg, remote) {
     });
 
     var jsonObject = JSON.parse(msg);
+
+    console.log(jsonObject);
+
+   var data = new Kodemon({
+       execution_time: jsonObject.execution_time,
+       timestamp: jsonObject.timestamp,
+       token: jsonObject.token,
+       key: jsonObject.key
+    });
 });
 
 server.on('listening', function() {
