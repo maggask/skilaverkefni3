@@ -38,12 +38,12 @@ app.get('/api/entries/:keys', function(req, res) {
 });
 
 // 2. List all execution times for a given key.
-app.get('/api/time/:keys', function(req, res) {
+app.get('/api/time/:key', function(req, res) {
 
 });
 
 // 3. List all execution times, for a given key on a given time range.
-app.get('/api/time/timerange', function(req, res) {
+app.get('/api/time/:key/:timerange', function(req, res) {
 
 });
 
