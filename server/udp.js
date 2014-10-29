@@ -1,4 +1,6 @@
-var dgram = require("dgram");
+var dgram = require("dgram")
+    Kodemon = require('./models').Kodemon,
+    mongoose = require('mongoose');
 
 // UDP server that receives messages Python
 // decorator called Kodemon and parses them.
