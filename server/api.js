@@ -19,20 +19,23 @@ connectMongo();
 
 // 1. List all keys (without any values) that have been sent to the server. 
 // With the method you would see a list of all the methods
-app.get('/api/entries/keys', function(req, res) {
-    Kodemon.find({}, '-__v -_id', function(err, keys) {
+app.get('/api/entries/keys', function(req, result) {
+    Kodemon.find({}, function(err, keys) {
         if (keys) {
-            db.Kodemon.aggregate([
+            Kodemon.aggregate([
                 {$project: {  
-                    key: 0
+                    key: 1,
+                    _id: 0
                 }}
             ], function(err, res) {
                 if (err) {
                     console.log(err);
                 }
-
-                console.log(res);
-            });
+                else{
+                    console.log(JSON.stringify(res));
+                    result.json(res);
+                }
+            });        
         }
         else {
             res.status(404).send('Not found');
@@ -41,28 +44,65 @@ app.get('/api/entries/keys', function(req, res) {
 });
 
 // 2. List all execution times for a given key.
-app.get('/api/entries/keys/:key', function(req, res) {
-    var entry = Kodemon.find({'key': key}, '-__v -_id', function(err, key) { 
-        if (entry) {
-            db.Kodemon.aggregate([
-                
-            ], function(err, res) {
-                if (err) {
-                    console.log(err);
-                }
+app.get('/api/entries/keys/:key', function(req, result) {
+    var key = req.params.key;
 
-                console.log(res);
-            });
+    Kodemon.find({'key': key}, function(err, k) { 
+        if (err) {
+            res.status(500).send('Try again later');
+        }
+        else if (!k) {
+            res.status(404).send('No entry with key ' + key);
         }
         else {
-            res.status(404).send('Not found');
+            Kodemon.aggregate([
+                {$project: {
+                    execution_time: 1,
+                    _id: 0
+                }} 
+            ], function(err, res) {
+
+                console.log(JSON.stringify(res));
+                result.json(res);
+            });
         }
     });
 });
 
 // 3. List all execution times, for a given key on a given time range.
-app.get('/api/time/:key/:timerange', function(req, res) {
+app.get('/api/entries/keys/:key/:timefrom/:timeto', function(req, result) {
+    var key = req.params.key;
+    var timefrom = req.params.timefrom;
+    var timeto = req.params.timeto;
 
+    var startTime = new Date(timefrom);
+    var endTime = new Date(timeto);
+
+    Kodemon.find({'key': key}, function(err, k) {
+        if (err) {
+            res.status(500).send('Try again later');
+        }
+        else if (!k) {
+            res.status(404).send('No entry with key ' + key);
+        }
+        else {
+            Kodemon.aggregate([
+               {$match: { 
+                    timestamp: {
+                        $gte: startTime,
+                        $lt: endTime
+                    }
+               }},
+               {$project: {
+                    execution_time: 1,
+                    _id: 0
+               }}  
+            ], function(err, res) {
+                console.log(JSON.stringify(res));
+                result.json(res);
+            });
+        }
+    });
 });
 
 app.listen(4000, function() {
