@@ -8,5 +8,10 @@ def fibo(n):
         a, b = b, a + b
         return_list.append(b)
 
+@kodemon
+def libo(a, b):
+    return a + b
+
 if __name__ == '__main__':
     fibo(10000)
+    libo(2, 3)

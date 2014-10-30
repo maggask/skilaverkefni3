@@ -2,7 +2,7 @@ var dgram = require("dgram")
     Kodemon = require('./models').Kodemon,
     mongoose = require('mongoose');
 
-// UDP server that receives messages Python
+// UDP server that receives messages from a Python
 // decorator called Kodemon and parses them.
 
 var PORT = process.env.NODE_PORT || 4000;
@@ -35,13 +35,20 @@ server.on("message", function(msg, remote) {
 
     var jsonObject = JSON.parse(msg);
 
-    console.log(jsonObject);
+    var data = new Kodemon({
+        execution_time: jsonObject.execution_time,
+        timestamp: jsonObject.timestamp * 1000,
+        token: jsonObject.token,
+        key: jsonObject.key
+    });
 
-   var data = new Kodemon({
-       execution_time: jsonObject.execution_time,
-       timestamp: jsonObject.timestamp,
-       token: jsonObject.token,
-       key: jsonObject.key
+    data.save(function(err) {
+        if (err) {
+            console.error("Error saving data to mongo database");
+        }
+        else {
+            console.log("Success!");
+        }
     });
 });
 

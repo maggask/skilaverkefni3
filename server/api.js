@@ -25,11 +25,10 @@ app.get('/api/entries', function(req, res) {
 
 // 1. List all keys (without any values) that have been sent to the server. 
 // With the method you would see a list of all the methods
-app.get('/api/entries/:keys', function(req, res) {
-    console.log(req.body);
-    var keys = Kodemon.find({'key': keys}, function(err, keys) {
-        if (keys) {
-            res.json(keys);
+app.get('/api/entries/keys', function(req, res) {
+    Kodemon.find({}, '-__v -_id', function(err, entry) {
+        if (entry) {
+            res.json(entry);
         }
         else {
             res.status(404).send('Not found');
@@ -38,7 +37,15 @@ app.get('/api/entries/:keys', function(req, res) {
 });
 
 // 2. List all execution times for a given key.
-app.get('/api/time/:key', function(req, res) {
+app.get('/api/entries/keys/:key', function(req, res) {
+    var entry = Kodemon.find({'key': key}, '-__v -_id', function(err, key) { 
+        if (entry) {
+            res.json(key);
+        }
+        else {
+            res.status(404).send('Not found');
+        }
+    });
 
 });
 
