@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+  head
+    title= "Kodemon project!"
+    link(rel='stylesheet', href='/css/default.css')
+  body
+    h1= "Welcome to the Kodemon project!"
+
+    form(action="/api/entries/keys", method="GET")
+      button(id="keys", type="submit") Show methods
+
+    form(action="/api/entries/key", method="GET")
+      input(type="text", name="key1", placeholder="Insert key")
+      button(id="timeKey", type="submit") Submit
+
+    form(action="/api/entries/key/range", method="GET")
+      input(type="text", placeholder="Insert key")
+      input(type="text", placeholder="Start time")
+      input(type="text", placeholder="End time")
+      button(id="timeKeyRange", type="submit") Submit

@@ -1,8 +1,21 @@
 var express = require('express'),
     Kodemon = require('./models').Kodemon,
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    routes = require('./index'),
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    routes = require('./index');
 
 app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(express.static(path.join(__dirname, 'css')));
+
+app.use('/', routes);
 
 var connectMongo = function() {
     mongoose.connect('mongodb://localhost/kodemondb', {keepAlive: 1});
@@ -39,8 +52,9 @@ app.get('/api/entries/keys', function(req, result) {
 });
 
 // 2. List all execution times for a given key.
-app.get('/api/entries/keys/:key', function(req, result) {
-    var key = req.params.key;
+app.get('/api/entries/key', function(req, result) {
+    var key = req.body.key1;
+    console.log(req.body);
 
     Kodemon.find({'key': key}, function(err, k) { 
         if (err) {
@@ -57,7 +71,6 @@ app.get('/api/entries/keys/:key', function(req, result) {
                     _id: 0
                 }} 
             ], function(err, res) {
-
                 console.log(JSON.stringify(res));
                 result.json(res);
             });
@@ -66,7 +79,7 @@ app.get('/api/entries/keys/:key', function(req, result) {
 });
 
 // 3. List all execution times, for a given key on a given time range.
-app.get('/api/entries/keys/:key/:timefrom/:timeto', function(req, result) {
+app.get('/api/entries/key/range', function(req, result) {
     var key = req.params.key;
     var timefrom = req.params.timefrom;
     var timeto = req.params.timeto;
@@ -105,3 +118,5 @@ app.get('/api/entries/keys/:key/:timefrom/:timeto', function(req, result) {
 app.listen(4000, function() {
     console.log('Server is ready');
 });
+
+module.exports = app;
