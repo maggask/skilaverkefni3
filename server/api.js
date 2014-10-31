@@ -1,11 +1,6 @@
 var express = require('express'),
     Kodemon = require('./models').Kodemon,
-    mongoose = require('mongoose'),
-    elasticsearch = require('elasticsearch');
-
-var client = new elasticsearch.Client({
-    host: 'localhost:9200'
-});
+    mongoose = require('mongoose');
 
 app = express();
 

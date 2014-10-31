@@ -16,7 +16,12 @@ def addTwo(a, b):
 def printHello():
     print 'Hello world!'
 
+@kodemon
+def isEven(n):
+    return n %  2 == 0
+
 if __name__ == '__main__':
     fibonacci(10000)
     addTwo(2, 3)
     printHello()
+    isEven(4)
