@@ -3,8 +3,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     routes = require('./index'),
     path = require('path'),
-    bodyParser = require('body-parser'),
-    routes = require('./index');
+    bodyParser = require('body-parser');
 
 app = express();
 
@@ -12,7 +11,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'css')));
 
 app.use('/', routes);
@@ -54,7 +53,7 @@ app.get('/api/entries/keys', function(req, result) {
 // 2. List all execution times for a given key.
 app.get('/api/entries/key', function(req, result) {
     var key = req.body.key1;
-    console.log(req.body);
+    console.log(req.body.key1);
 
     Kodemon.find({'key': key}, function(err, k) { 
         if (err) {
