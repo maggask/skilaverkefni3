@@ -52,39 +52,8 @@ app.get('/api/entries/keys', function(req, result) {
 
 // 2. List all execution times for a given key.
 app.get('/api/entries/key', function(req, result) {
-    var key = req.body.key1;
-    console.log(req.body.key1);
-
-    Kodemon.find({'key': key}, function(err, k) { 
-        if (err) {
-            res.status(500).send('Try again later');
-        }
-        else if (!k) {
-            res.status(404).send('No entry with key ' + key);
-        }
-        else {
-            Kodemon.aggregate([
-                {$project: {
-                    key: 1,
-                    execution_time: 1,
-                    _id: 0
-                }} 
-            ], function(err, res) {
-                console.log(JSON.stringify(res));
-                result.json(res);
-            });
-        }
-    });
-});
-
-// 3. List all execution times, for a given key on a given time range.
-app.get('/api/entries/key/range', function(req, result) {
-    var key = req.params.key;
-    var timefrom = req.params.timefrom;
-    var timeto = req.params.timeto;
-
-    var startTime = new Date(timefrom);
-    var endTime = new Date(timeto);
+    var key = req.query.key1;
+    console.log(key);
 
     Kodemon.find({'key': key}, function(err, k) {
         if (err) {
@@ -95,7 +64,41 @@ app.get('/api/entries/key/range', function(req, result) {
         }
         else {
             Kodemon.aggregate([
-               {$match: { 
+                {$match: {key: key}}, 
+                {$project: {
+                    key: 1,
+                    execution_time: 1,
+                    _id: 0
+                }} 
+            ], function(err, res) {
+                console.log(res);
+                console.log(JSON.stringify(res));
+                result.json(res);
+            });
+        }
+    });
+});
+
+// 3. List all execution times, for a given key on a given time range.
+app.get('/api/entries/key/from/to', function(req, result) {
+    var key = req.query.key2;
+    var timeFrom = req.query.timeFrom;
+    var timeTo = req.query.timeTo;
+
+    var startTime = new Date(timeFrom);
+    var endTime = new Date(timeTo);
+
+    Kodemon.find({'key': key}, function(err, k) {
+        if (err) {
+            res.status(500).send('Try again later');
+        }
+        else if (!k) {
+            res.status(404).send('No entry with key ' + key);
+        }
+        else {
+            Kodemon.aggregate([
+               {$match: {
+                    key: key,
                     timestamp: {
                         $gte: startTime,
                         $lt: endTime

@@ -13,8 +13,8 @@ html(lang="en")
       input(type="text", name="key1", placeholder="Insert key")
       button(id="timeKey", type="submit") Submit
 
-    form(action="/api/entries/key/range", method="GET")
-      input(type="text", placeholder="Insert key")
-      input(type="text", placeholder="Start time")
-      input(type="text", placeholder="End time")
+    form(action="/api/entries/key/from/to", method="GET")
+      input(type="text", name="key2", placeholder="Insert key")
+      input(type="text", name="timeFrom", placeholder="Start time")
+      input(type="text", name="timeTo", placeholder="End time")
       button(id="timeKeyRange", type="submit") Submit
