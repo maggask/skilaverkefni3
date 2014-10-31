@@ -1,5 +1,6 @@
 var express = require('express');
 
+
 $(function () {
     $(document).ready(function () {
         Highcharts.setOptions({
