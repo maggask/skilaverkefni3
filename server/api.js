@@ -57,6 +57,7 @@ app.get('/api/entries/keys/:key', function(req, result) {
         else {
             Kodemon.aggregate([
                 {$project: {
+                    key: 1,
                     execution_time: 1,
                     _id: 0
                 }} 
@@ -95,6 +96,7 @@ app.get('/api/entries/keys/:key/:timefrom/:timeto', function(req, result) {
                }},
                {$project: {
                     execution_time: 1,
+                    timestamp: 1,
                     _id: 0
                }}  
             ], function(err, res) {
