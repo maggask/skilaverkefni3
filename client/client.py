@@ -1,7 +1,7 @@
 from kodemon import kodemon
 
 @kodemon
-def fibo(n):
+def fibonacci(n):
     return_list = []
     a, b = 0, 1
     while b < n:
@@ -9,9 +9,14 @@ def fibo(n):
         return_list.append(b)
 
 @kodemon
-def libo(a, b):
+def addTwo(a, b):
     return a + b
 
+@kodemon
+def printHello():
+    print 'Hello world!'
+
 if __name__ == '__main__':
-    fibo(10000)
-    libo(2, 3)
+    fibonacci(10000)
+    addTwo(2, 3)
+    printHello()
