@@ -13,6 +13,7 @@ app.set('view engine', 'jade');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'css')));
+app.use(express.static(__dirname + '/public'));
 
 app.use('/', routes);
 
@@ -84,7 +85,6 @@ app.get('/api/entries/key/from/to', function(req, result) {
     var key = req.query.key2;
     var timeFrom = req.query.timeFrom;
     var timeTo = req.query.timeTo;
-
     var startTime = new Date(timeFrom);
     var endTime = new Date(timeTo);
 
