@@ -72,7 +72,6 @@ app.get('/api/entries/key', function(req, result) {
                     _id: 0
                 }} 
             ], function(err, res) {
-                console.log(res);
                 console.log(JSON.stringify(res));
                 result.json(res);
             });
