@@ -1,12 +1,15 @@
-doctype html
-html(lang="en")
-  head
-    title= "Kodemon project!"
-    link(rel='stylesheet', href='/css/default.css')
-  body
-    h1 #{data[0].key}
-    div#output
+extends ./layout.jade
+
+block content
+  script(type="text/javascript").
+    var data= !{JSON.stringify(data)};
+
+  ul
+    each val in data
+      li= val.key
     
-    script(type="text/javascript", src="/js/listcontent.js")
-    script(type="text/javascript", src="/js/jquery-2.1.1.min.js")
+  div#output
     
+  script(type="text/javascript", src="/js/listcontent.js")
+  script(type="text/javascript", src="/js/jquery-2.1.1.min.js")
+  script(src="/js/graph.js")    

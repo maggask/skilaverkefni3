@@ -42,7 +42,6 @@ app.get('/api/entries/keys', function(req, result) {
                 else{
                     var jstr = JSON.stringify(res);
                     result.render('keys', {data: res});
-                    //result.render('keys');
                 }
             });        
         }
@@ -71,8 +70,8 @@ app.get('/api/entries/key', function(req, result) {
                     _id: 0
                 }} 
             ], function(err, res) {
-                console.log(JSON.stringify(res));
-                result.json(res);
+                var jsrt = JSON.stringify(res);
+                result.render('key', {data: res});
             });
         }
     });
@@ -105,11 +104,12 @@ app.get('/api/entries/key/from/to', function(req, result) {
                {$project: {
                     execution_time: 1,
                     timestamp: 1,
+                    key: 1,
                     _id: 0
                }}  
             ], function(err, res) {
-                console.log(JSON.stringify(res));
-                result.json(res);
+                var jsrt = JSON.stringify(res);
+                result.render('key', {data: res});
             });
         }
     });

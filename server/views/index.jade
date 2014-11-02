@@ -1,26 +1,21 @@
-doctype html
-html(lang="en")
-  head
-    title= "Kodemon project!"
-    link(rel='stylesheet', href='/css/default.css')
-  body
-    h1= "Welcome to the Kodemon project!"
+extends ./layout.jade
 
-    form(action="/api/entries/keys", method="GET")
-      button(id="keys", type="submit") Show methods
+block content
+   form(action="/api/entries/keys", method="GET")
+     button(id="keys", type="submit") Show methods
 
-    form(action="/api/entries/key", method="GET")
-      input(type="text", name="key1", placeholder="Insert key")
-      button(id="timeKey", type="submit") Submit
+   form(id="form2", action="/api/entries/key", method="GET")
+     input(type="text", name="key1", placeholder="Insert key")
+     button(id="timeKey", type="submit") Submit
 
-    form(action="/api/entries/key/from/to", method="GET")
-      input(type="text", name="key2", placeholder="Insert key")
-      input(type="text", name="timeFrom", placeholder="Start time")
-      input(type="text", name="timeTo", placeholder="End time")
-      button(id="timeKeyRange", type="submit") Submit
+   form(action="/api/entries/key/from/to", method="GET")
+     input(type="text", name="key2", placeholder="Insert key")
+     input(type="text", name="timeFrom", placeholder="Start time")
+     input(type="text", name="timeTo", placeholder="End time")
+     button(id="timeKeyRange", type="submit") Submit
 
-    div#container
+   div#container
 
-    script(type="text/javascript", src="/js/jquery-2.1.1.min.js")
-    script(src="http://code.highcharts.com/highcharts.js")
-    script(src="/js/graph.js")
+   script(type="text/javascript", src="/js/jquery-2.1.1.min.js")
+   script(src="http://code.highcharts.com/highcharts.js")
+   script(src="/js/graph.js")
