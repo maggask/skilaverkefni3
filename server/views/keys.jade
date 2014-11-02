@@ -4,9 +4,9 @@ html(lang="en")
     title= "Kodemon project!"
     link(rel='stylesheet', href='/css/default.css')
   body
-    h1= "Welcome to the Kodemon project!"
-    h2=data
+    h1 #{data[0].key}
     div#output
+    
     script(type="text/javascript", src="/js/listcontent.js")
     script(type="text/javascript", src="/js/jquery-2.1.1.min.js")
     

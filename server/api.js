@@ -40,8 +40,9 @@ app.get('/api/entries/keys', function(req, result) {
                     console.log(err);
                 }
                 else{
-                    console.log(JSON.stringify(res));
-                    result.json(res);
+                    var jstr = JSON.stringify(res);
+                    result.render('keys', {data: res});
+                    //result.render('keys');
                 }
             });        
         }
@@ -54,8 +55,6 @@ app.get('/api/entries/keys', function(req, result) {
 // 2. List all execution times for a given key.
 app.get('/api/entries/key', function(req, result) {
     var key = req.query.key1;
-    console.log(key);
-
     Kodemon.find({'key': key}, function(err, k) {
         if (err) {
             res.status(500).send('Try again later');
