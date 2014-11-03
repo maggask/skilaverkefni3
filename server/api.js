@@ -44,7 +44,8 @@ app.get('/api/entries/keys', function(req, result) {
                     console.log(err);
                 }
                 else{
-                    result.render('keys', {data: res});
+                    //result.render('keys', {data: res});
+                    result.send(res);
                 }
             });        
         }
@@ -55,8 +56,9 @@ app.get('/api/entries/keys', function(req, result) {
 });
 
 // 2. List all execution times for a given key.
-app.get('/api/entries/key', function(req, result) {
-    var key = req.query.key1;
+app.get('/api/entries/key/:key', function(req, result) { 
+    var key = req.params.key;
+
     Kodemon.find({'key': key}, function(err, k) {
         if (err) {
             res.status(500).send('Try again later');
@@ -73,19 +75,22 @@ app.get('/api/entries/key', function(req, result) {
                     _id: 0
                 }} 
             ], function(err, res) {
-                result.render('key', {data: res});
+                //result.render('key', {data: res});
+                result.send(res);
             });
         }
     });
 });
 
 // 3. List all execution times, for a given key on a given time range.
-app.get('/api/entries/key/from/to', function(req, result) {
-    var key = req.query.key2;
-    var timeFrom = req.query.timeFrom;
-    var timeTo = req.query.timeTo;
+app.get('/api/entries/:key/:from/:to', function(req, result) {
+    var key = req.params.key;
+    var timeFrom = req.params.from;
+    var timeTo = req.params.to;
     var startTime = new Date(timeFrom);
     var endTime = new Date(timeTo);
+
+    console.log(startTime);
 
     Kodemon.find({'key': key}, function(err, k) {
         if (err) {
@@ -110,8 +115,7 @@ app.get('/api/entries/key/from/to', function(req, result) {
                     _id: 0
                }}  
             ], function(err, res) {
-                var jsrt = JSON.stringify(res);
-                result.render('keyfromto', {data: res});
+                result.send(res);
             });
         }
     });
