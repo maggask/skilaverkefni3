@@ -1,8 +1,6 @@
 var express = require('express'),
     routes = express.Router(),
     path = require('path'),
-    http = require('http'),
-    request = require('request'),
     requestify = require('requestify');
 
 
