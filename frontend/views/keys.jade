@@ -1,0 +1,9 @@
+extends ./layout.jade
+
+block content
+  script(type="text/javascript").
+    var data= !{JSON.stringify(data)};
+
+  ul
+    each val in data
+      li= val.key

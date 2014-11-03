@@ -44,7 +44,6 @@ app.get('/api/entries/keys', function(req, result) {
                     console.log(err);
                 }
                 else{
-                    var jstr = JSON.stringify(res);
                     result.render('keys', {data: res});
                 }
             });        
@@ -74,7 +73,6 @@ app.get('/api/entries/key', function(req, result) {
                     _id: 0
                 }} 
             ], function(err, res) {
-                var jsrt = JSON.stringify(res);
                 result.render('key', {data: res});
             });
         }
@@ -113,7 +111,7 @@ app.get('/api/entries/key/from/to', function(req, result) {
                }}  
             ], function(err, res) {
                 var jsrt = JSON.stringify(res);
-                result.render('key', {data: res});
+                result.render('keyfromto', {data: res});
             });
         }
     });
