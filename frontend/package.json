@@ -1,0 +1,18 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Client for Kodemon project!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.org:maggask/skilaverkefni3"
+  },
+  "author": "Margrét S. Kristjánsdóttir, Einar Þór Traustason and Anna Laufey Stefánsdóttir",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.10.1"
+  }
+}
