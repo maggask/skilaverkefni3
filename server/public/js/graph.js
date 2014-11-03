@@ -25,15 +25,15 @@ $(function () {
                 }
             },
             title: {
-                text: 'Live random data'
+                text: 'Execution time'
             },
             xAxis: {
-                type: 'datetime',
+                type: 'Timestamp',
                 tickPixelInterval: 150
             },
             yAxis: {
                 title: {
-                    text: 'Value'
+                    text: 'Execution time'
                 },
                 plotLines: [{
                     value: 0,
