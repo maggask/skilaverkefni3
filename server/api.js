@@ -1,7 +1,7 @@
 var express = require('express'),
     Kodemon = require('./models').Kodemon,
     mongoose = require('mongoose'),
-    routes = require('./index'),
+    routes = express.Router(),
     path = require('path'),
     bodyParser = require('body-parser');
 
@@ -24,6 +24,10 @@ var connectMongo = function() {
 
 mongoose.connection.on('disconnected', connectMongo);
 connectMongo();
+
+app.get('/', function(req, res) {
+    res.render('index');
+});
 
 // 1. List all keys (without any values) that have been sent to the server. 
 // With the method you would see a list of all the methods
