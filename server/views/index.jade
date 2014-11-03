@@ -10,6 +10,6 @@ block content
 
    form(action="/api/entries/key/from/to", method="GET")
      input(type="text", name="key2", placeholder="Insert key")
-     input(type="text", name="timeFrom", placeholder="Start time")
-     input(type="text", name="timeTo", placeholder="End time")
+     input(id="rangeFrom", type="text", name="timeFrom", placeholder="Start time")
+     input(id="rangeTo", type="text", name="timeTo", placeholder="End time")
      button(id="timeKeyRange", type="submit") Submit
