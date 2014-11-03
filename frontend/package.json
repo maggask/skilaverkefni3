@@ -13,6 +13,10 @@
   "author": "Margrét S. Kristjánsdóttir, Einar Þór Traustason and Anna Laufey Stefánsdóttir",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.10.1"
+    "express": "^4.10.1",
+    "jade": "^1.7.0",
+    "nodemon": "^1.2.1",
+    "path": "^0.4.9",
+    "requestify": "^0.1.16"
   }
 }

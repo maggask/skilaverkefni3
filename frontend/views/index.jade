@@ -1,14 +1,14 @@
 extends ./layout.jade
 
 block content
-   form(action="/api/entries/keys", method="GET")
+   form(id="showMethods", action="/kodemon/index", method="GET")
      button(id="keys", type="submit") Show methods
 
-   form(id="form2", action="/api/entries/key", method="GET")
+   form(id="form2", action="/kodemon/index/function",  method="GET")
      input(type="text", name="key1", placeholder="Insert key")
      button(id="timeKey", type="submit") Submit
 
-   form(action="/api/entries/key/from/to", method="GET")
+   form(action="/kodemon/index/function/range", method="GET")
      input(type="text", name="key2", placeholder="Insert key")
      input(id="rangeFrom", type="text", name="timeFrom", placeholder="Start time")
      input(id="rangeTo", type="text", name="timeTo", placeholder="End time")
