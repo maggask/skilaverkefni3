@@ -1,15 +1,8 @@
 extends ./layout.jade
 
 block content
-   form(id="showMethods", action="/kodemon/index", method="GET")
-     button(id="keys", type="submit") Show methods
-
-   form(id="form2", action="/kodemon/index/function",  method="GET")
-     input(type="text", name="key1", placeholder="Insert key")
-     button(id="timeKey", type="submit") Submit
-
-   form(action="/kodemon/index/function/range", method="GET")
-     input(type="text", name="key2", placeholder="Insert key")
-     input(id="rangeFrom", type="text", name="timeFrom", placeholder="Start time")
-     input(id="rangeTo", type="text", name="timeTo", placeholder="End time")
-     button(id="timeKeyRange", type="submit") Submit
+  ul.keys
+  
+  
+  script(src="/js/list-keys.js", type="text/javascript")
+  

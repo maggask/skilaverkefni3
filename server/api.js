@@ -22,7 +22,7 @@ app.get('/api/entries/keys', function(req, result) {
     Kodemon.find({}, function(err, keys) {
         if (keys) {
             Kodemon.aggregate([
-                {$project: {  
+                {$project: {
                     key: 1,
                     _id: 0
                 }}
@@ -32,9 +32,10 @@ app.get('/api/entries/keys', function(req, result) {
                 }
                 else{
                     //result.render('keys', {data: res});
+                    result.header('Access-Control-Allow-Origin', "*")
                     result.send(res);
                 }
-            });        
+            });
         }
         else {
             res.status(404).send('Not found');
@@ -43,7 +44,7 @@ app.get('/api/entries/keys', function(req, result) {
 });
 
 // 2. List all execution times for a given key.
-app.get('/api/entries/key/:key', function(req, result) { 
+app.get('/api/entries/key/:key', function(req, result) {
     var key = req.params.key;
 
     Kodemon.find({'key': key}, function(err, k) {
@@ -55,12 +56,12 @@ app.get('/api/entries/key/:key', function(req, result) {
         }
         else {
             Kodemon.aggregate([
-                {$match: {key: key}}, 
+                {$match: {key: key}},
                 {$project: {
                     key: 1,
                     execution_time: 1,
                     _id: 0
-                }} 
+                }}
             ], function(err, res) {
                 //result.render('key', {data: res});
                 result.send(res);
@@ -100,7 +101,7 @@ app.get('/api/entries/:key/:from/:to', function(req, result) {
                     timestamp: 1,
                     key: 1,
                     _id: 0
-               }}  
+               }}
             ], function(err, res) {
                 result.send(res);
             });
