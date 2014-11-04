@@ -1,21 +1,12 @@
 var express = require('express'),
     Kodemon = require('./models').Kodemon,
     mongoose = require('mongoose'),
-    routes = express.Router(),
-    path = require('path'),
     bodyParser = require('body-parser');
 
 app = express();
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static(path.join(__dirname, 'css')));
-app.use(express.static(__dirname + '/public'));
-
-app.use('/', routes);
 
 var connectMongo = function() {
     mongoose.connect('mongodb://localhost/kodemondb', {keepAlive: 1});
@@ -24,10 +15,6 @@ var connectMongo = function() {
 
 mongoose.connection.on('disconnected', connectMongo);
 connectMongo();
-
-app.get('/', function(req, res) {
-    res.render('index');
-});
 
 // 1. List all keys (without any values) that have been sent to the server. 
 // With the method you would see a list of all the methods
@@ -124,5 +111,3 @@ app.get('/api/entries/:key/:from/:to', function(req, result) {
 app.listen(4000, function() {
     console.log('Server is ready');
 });
-
-module.exports = app;
