@@ -18,10 +18,15 @@ def printHello():
 
 @kodemon
 def isEven(n):
-    return n %  2 == 0
+    return n % 2 == 0
+
+@kodemon
+def isOdd(n):
+    return n % 2 == 1
 
 if __name__ == '__main__':
     fibonacci(10000)
     addTwo(2, 3)
     printHello()
     isEven(4)
+    isOdd(3)

@@ -31,7 +31,6 @@ app.get('/api/entries/keys', function(req, result) {
                     console.log(err);
                 }
                 else{
-                    //result.render('keys', {data: res});
                     result.header('Access-Control-Allow-Origin', "*")
                     result.send(res);
                 }
@@ -64,7 +63,6 @@ app.get('/api/entries/key/:key', function(req, result) {
                     _id: 0
                 }}
             ], function(err, res) {
-                //result.render('key', {data: res});
                 result.header('Access-Control-Allow-Origin', "*")
                 result.send(res);
             });
@@ -79,10 +77,6 @@ app.get('/api/entries/key/:key/:from/:to', function(req, result) {
     var timeTo = req.params.to;
     var startTime = new Date(timeFrom);
     var endTime = new Date(timeTo);
-
-    console.log(startTime);
-    console.log(endTime);
-    console.log(key);
 
     Kodemon.find({'key': key}, function(err, k) {
         if (err) {
@@ -107,7 +101,6 @@ app.get('/api/entries/key/:key/:from/:to', function(req, result) {
                     _id: 0
                }}
             ], function(err, res) { 
-                console.log(res);
                 result.header('Access-Control-Allow-Origin', "*")
                 result.send(res);
             });

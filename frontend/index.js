@@ -18,7 +18,6 @@ app.get('/:function', function(req, res) {
 });
 
 app.get('/:function/fromto', function(req, res) {
-    console.log(req.query); 
     res.render('keyfromto', {method: req.param("function"), from: req.param("from"), to: req.param("to")});
 });
 
