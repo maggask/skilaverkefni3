@@ -9,7 +9,7 @@ $(document).ready(function(){
         var i = 0;
 
         title.append("Execution time and timestamp for: " + data[0].key);
-        form.attr('action', '/' + data[0].key + '/timerange');
+        form.attr('action', '/' + data[0].key + '/fromto');
         for (i = 0; i < data.length; i = i + 1) { 
             key.append('<li>' + '<strong>Time:</strong> ' + data[i].execution_time + ' <strong>Date:</strong> ' + data[i].timestamp + '</li>');
             seen_key.push(data[i].key);

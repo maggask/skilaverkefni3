@@ -2,13 +2,12 @@ extends ./layout.jade
 
 block content
   script(type="text/javascript", src="/js/list-executiontime.js")
-  script(type="text/javascript", src="/js/list-executiontime-range.js")
 
   h4.title
 
-  form.form(method="GET")
-    input(id="from", type="text", placeholder="Date from")
-    input(id="to", type="text", placeholder="Date to")
+  form.form(action="/function/fromto", method="GET")
+    input(id="from", name="from", type="datetime-local", placeholder="Date from")
+    input(id="to", name="to", type="datetime-local", placeholder="Date to")
     button(id="btn", type="submit") Submit
   
   ul.key 
