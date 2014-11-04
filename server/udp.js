@@ -23,7 +23,7 @@ server.on("message", function(msg, remote) {
     console.log(remote.address + ':' + remote.port);
 
     var okBuffer = new Buffer("OK " + msg);
-    server.send(okBuffer, 0, okBuffer.length, remote.port, remote.address, 
+    server.send(okBuffer, 0, okBuffer.length, remote.port, remote.address,
     function(err, bytes) {
         if (err) {
             console.error("Error sending OK buffer to client", err);
