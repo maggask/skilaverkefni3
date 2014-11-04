@@ -11,7 +11,14 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
     res.render('index');
+});
+
+app.get('/function', function(req, res) {
     res.render('key');
+});
+
+app.get('/function/range', function(req, res) {
+    res.render('keyfromto');
 });
 
 app.listen(5000, function() {
