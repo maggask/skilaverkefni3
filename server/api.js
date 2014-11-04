@@ -60,10 +60,12 @@ app.get('/api/entries/key/:key', function(req, result) {
                 {$project: {
                     key: 1,
                     execution_time: 1,
+                    timestamp: 1,
                     _id: 0
                 }}
             ], function(err, res) {
                 //result.render('key', {data: res});
+                result.header('Access-Control-Allow-Origin', "*")
                 result.send(res);
             });
         }
@@ -71,7 +73,7 @@ app.get('/api/entries/key/:key', function(req, result) {
 });
 
 // 3. List all execution times, for a given key on a given time range.
-app.get('/api/entries/:key/:from/:to', function(req, result) {
+app.get('/api/entries/key/:key/:from/:to', function(req, result) {
     var key = req.params.key;
     var timeFrom = req.params.from;
     var timeTo = req.params.to;
@@ -79,6 +81,8 @@ app.get('/api/entries/:key/:from/:to', function(req, result) {
     var endTime = new Date(timeTo);
 
     console.log(startTime);
+    console.log(endTime);
+    console.log(key);
 
     Kodemon.find({'key': key}, function(err, k) {
         if (err) {
@@ -102,7 +106,9 @@ app.get('/api/entries/:key/:from/:to', function(req, result) {
                     key: 1,
                     _id: 0
                }}
-            ], function(err, res) {
+            ], function(err, res) { 
+                console.log(res);
+                result.header('Access-Control-Allow-Origin', "*")
                 result.send(res);
             });
         }

@@ -13,11 +13,12 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-app.get('/function', function(req, res) {
+app.get('/:function', function(req, res) {
     res.render('key');
 });
 
-app.get('/function/range', function(req, res) {
+app.get('/:function/timerange', function(req, res) {
+    console.log(req.query); 
     res.render('keyfromto');
 });
 

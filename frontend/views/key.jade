@@ -2,11 +2,13 @@ extends ./layout.jade
 
 block content
   script(type="text/javascript", src="/js/list-executiontime.js")
+  script(type="text/javascript", src="/js/list-executiontime-range.js")
 
-  ul.key 
+  h4.title
+
+  form.form(method="GET")
+    input(id="from", type="text", placeholder="Date from")
+    input(id="to", type="text", placeholder="Date to")
+    button(id="btn", type="submit") Submit
   
-  div#container
-
-  //script(type="text/javascript", src="/js/jquery-2.1.1.min.js")
-  //script(src="http://code.highcharts.com/highcharts.js")
-  //script(src="/js/graph.js")
+  ul.key 
