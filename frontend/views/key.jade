@@ -1,12 +1,9 @@
 extends ./layout.jade
 
 block content
-  script(type="text/javascript").
-    var data= !{JSON.stringify(data)};
+  script(type="text/javascript", src="/js/list-executiontime.js")
 
-  ul
-    each val in data
-      li= 'Method: ' + val.key + ' Exectution time: ' + val.execution_time
+  ul.key 
   
   div#container
 
