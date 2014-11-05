@@ -76,7 +76,7 @@ sudo apt-get install python-pip
 sudo apt-get install python-virtualenv
 ```
 
-###Running server
+###Running the server
 The udp server takes care of grabbing the information the kodemon sends out and stores it with mongodb.
 The API takes care of querying the database and deliveres the required information to any client that sends get requests to the API.
 
