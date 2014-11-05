@@ -84,15 +84,19 @@ Redirect to the server folder and run the package.json file to install the neede
 ```
 npm install
 ```
-Then run the udp server:
+Before being able to run the server and API, mongodb has to be running. Execute this command in a new console window:
+```
+mongod
+```
+Then run the udp server in a seperate window:
 ```
 node udp.js
 ```
-Then run the API:
+Then run the API in a seperate window:
 ```
 node api.js
 ```
-The servers run on port 4000.
+The udp server and API run on port 4000.
 
 ###Running the client
 The frontend that takes of requesting data from the API and representing it in a browser is written in express, jquery and jade.
