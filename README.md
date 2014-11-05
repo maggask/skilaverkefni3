@@ -80,7 +80,7 @@ sudo apt-get install python-virtualenv
 The udp server takes care of grabbing the information the kodemon sends out and stores it with mongodb.
 The API takes care of querying the database and deliveres the required information to any client that sends get requests to the API.
 
-Redirect to the server folder and run the package.json file to install the needed frameworks or dependencies:
+Redirect to the server folder and run the package.json file to install the needed frameworks and/or dependencies:
 ```
 npm install
 ```
@@ -97,7 +97,7 @@ The servers run on port 4000.
 ###Running the client
 The frontend that takes of requesting data from the API and representing it in a browser is written in express, jquery and jade.
 
-Redirect to the frontend folder and run the package.json file to install the needed frameworks or/and dependencies:
+Redirect to the frontend folder and run the package.json file to install the needed frameworks and/or dependencies:
 ```
 npm install
 ```
